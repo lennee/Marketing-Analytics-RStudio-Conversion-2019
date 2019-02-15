@@ -26,18 +26,17 @@ To import the data files provided, you will need to use the commands required fo
 
   To import a native SPSS *'.sav'* file, you must first import a library of functions called haven to properly analyze it. Then you can use the import the data to the variable name of your choice. See below:
   
-```{Import *'.sav'* data}
+```{r eval = FALSE}
 library(haven)
-data_sample <- read_sav("data sample.sav"")
+data_sample <- read_sav("data sample.sav")
 ```
 
-### *'.sav'* File
+### *'.csv'* File
 
-  Importing a *'.csv'* file doesn't require any additional libraries but may require some extra data manipulation to have the 
+  Importing a *'.csv'* file doesn't require any additional libraries but may require some extra data manipulation to have the variable and scale labels readable in some of the analyses. 
   
-```{Import *'.sav'* data}
-library(haven)
-data_sample <- read_sav("data sample.sav"")
+```{r eval = FALSE}
+data_sample <- read.csv("data sample.csv")
 ```
 
 
