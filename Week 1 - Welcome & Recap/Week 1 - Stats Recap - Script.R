@@ -5,7 +5,7 @@
 library(haven)
 
       # Change directory to file
-data_sample <- read_sav("C:/Users/Tristan.Smith/Documents/Courses/Marketing Analytics/Data/data sample(2).sav")
+data_sample <- read_sav("data sample.sav")
 
 # Scale Labels
 
@@ -35,6 +35,8 @@ data_sample = apply_labels(data_sample,
                       Preffirstdate = c("Walk by the river" = 1, "Coffee at a cafe" = 2, "Visit a museum" = 3, "See a movie" = 4)
 )
 
+rm(frequency, likert_five, weekly_hours)
+
 # Install CrossTab Library
 
         # install.packages("descr")
@@ -50,3 +52,13 @@ crosstab(data_sample$Single, data_sample$Fitnesspriority, expected = TRUE, row.l
 
 # Preferred first date (Single vs. Non-Single)
 crosstab(data_sample$Single, data_sample$Preffirstdate, expected = TRUE, row.labels = TRUE, chisq = TRUE, plot = FALSE)
+
+# Single 2 Sample T-Test
+
+# t.test(data_sample$Romance ~ data_sample$Single)
+
+# Mulitple 2 Sample T-Tests
+
+library(survival)
+
+lapply(data_sample[,c("Romance", "Scifi", "smilesaday", "Weatherchecker", "Newsreader")], function(x)t.test(x ~ data_sample$Single, var.equal = TRUE))
