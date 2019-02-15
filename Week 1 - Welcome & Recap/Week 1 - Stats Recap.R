@@ -1,0 +1,52 @@
+# Import the required data set. 'library()' serves as R's import function.
+
+# Show the data in the file window.   
+
+library(haven)
+
+      # Change directory to file
+data_sample <- read_sav("C:/Users/Tristan.Smith/Documents/Courses/Marketing Analytics/Data/data sample(2).sav")
+
+# Scale Labels
+
+      # install.packages("expss")
+
+library(expss)
+
+likert_five = c("Strongly Disagree" = 1, "Disagree" = 2, "Niether Agree nor Disagree" = 3, "Agree" = 4, "Strongly Agree" = 5)
+weekly_hours = c("0" = 1, "1-5" = 2, "6-10" = 3, "11-20" = 4, "21-40" = 5, "41-100" = 6, "more than 100" = 7)
+frequency = c("Never" = 1, "Less than 3 times a week" = 2, "4-10 times a week" = 3, "11-20" = 4, "more than 20 times a week" = 5)
+
+data_sample = apply_labels(data_sample,
+                      Romance = likert_five, 
+                      Scifi = likert_five,
+                      commutetime = weekly_hours,
+                      peopleaday = weekly_hours[1:5],
+                      smilesaday = frequency,
+                      renting = c("Rent" = 1, "Own" = 2),
+                      Fitnesspriority = c("Physical Fitness" = 1, "Look Good" = 2),
+                      Weatherchecker = frequency,
+                      Newsreader = frequency,
+                      Cookalot = frequency,
+                      WorkoutFreq = frequency,
+                      HealthyeatFreq = frequency,
+                      Single = c("Not Single" = 1, "Single" = 2),
+                      Romantictime = c("<30 hours a week" = 1, "31-45 hours a week" = 2, "61-80 hours a week" = 4, "more than 81 hours a week" = 5),
+                      Preffirstdate = c("Walk by the river" = 1, "Coffee at a cafe" = 2, "Visit a museum" = 3, "See a movie" = 4)
+)
+
+# Install CrossTab Library
+
+        # install.packages("descr")
+
+# CrossTabs
+
+library(descr)
+
+
+# Single vs. Reason for exercise
+crosstab(data_sample$Single, data_sample$Fitnesspriority, expected = TRUE, row.labels = TRUE, chisq = TRUE, plot = FALSE)
+
+
+# Preferred first date (Single vs. Non-Single)
+crosstab(data_sample$Single, data_sample$Preffirstdate, expected = TRUE, row.labels = TRUE, chisq = TRUE, plot = FALSE)
