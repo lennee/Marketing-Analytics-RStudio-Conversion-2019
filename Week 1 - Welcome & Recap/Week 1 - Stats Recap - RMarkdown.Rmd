@@ -1,0 +1,53 @@
+---
+title: "Week 1 - Stats Recap"
+author: "Tristan smith"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Datatypes Review
+
+  Below you will find a table of how best to measure and analyzed different data types against each other: 
+
+![](./Data-Types.png)
+
+Using RStudio and the *'data sample.sav'* or the *'data sample.csv'* data file provided on black board or using the RStudio work space provided, we will move through these different data type comparisons.  
+
+## Importing Data
+
+To import the data files provided, you will need to use the commands required for each file type. 
+
+### *'.sav'* File
+
+  To import a native SPSS *'.sav'* file, you must first import a library of functions called haven to properly analyze it. Then you can use the import the data to the variable name of your choice. See below:
+  
+```{Import *'.sav'* data}
+library(haven)
+data_sample <- read_sav("data sample.sav"")
+```
+
+### *'.sav'* File
+
+  Importing a *'.csv'* file doesn't require any additional libraries but may require some extra data manipulation to have the 
+  
+```{Import *'.sav'* data}
+library(haven)
+data_sample <- read_sav("data sample.sav"")
+```
+
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

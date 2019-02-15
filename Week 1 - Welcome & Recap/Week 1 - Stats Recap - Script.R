@@ -1,6 +1,6 @@
 # Import the required data set. 'library()' serves as R's import function.
 
-# Show the data in the file window.   
+# Show the data in the file window.
 
 library(haven)
 
@@ -18,7 +18,7 @@ weekly_hours = c("0" = 1, "1-5" = 2, "6-10" = 3, "11-20" = 4, "21-40" = 5, "41-1
 frequency = c("Never" = 1, "Less than 3 times a week" = 2, "4-10 times a week" = 3, "11-20" = 4, "more than 20 times a week" = 5)
 
 data_sample = apply_labels(data_sample,
-                      Romance = likert_five, 
+                      Romance = likert_five,
                       Scifi = likert_five,
                       commutetime = weekly_hours,
                       peopleaday = weekly_hours[1:5],
@@ -54,10 +54,9 @@ crosstab(data_sample$Single, data_sample$Fitnesspriority, expected = TRUE, row.l
 crosstab(data_sample$Single, data_sample$Preffirstdate, expected = TRUE, row.labels = TRUE, chisq = TRUE, plot = FALSE)
 
 
-crosstab(data_sample$PhoneBrd, data_sample$Weatherchecker, expected = TRUE, row.labels = TRUE, chisq = TRUE, plot = FALSE, dnn = c("Phone Brand", "Check Weather frequently"))
 # Single 2 Sample T-Test
 
-# t.test(data_sample$Romance ~ data_sample$Single)
+t.test(data_sample$Romance ~ data_sample$Single)
 
 # Mulitple 2 Sample T-Tests
 
