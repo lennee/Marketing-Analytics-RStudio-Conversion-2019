@@ -53,6 +53,8 @@ crosstab(data_sample$Single, data_sample$Fitnesspriority, expected = TRUE, row.l
 # Preferred first date (Single vs. Non-Single)
 crosstab(data_sample$Single, data_sample$Preffirstdate, expected = TRUE, row.labels = TRUE, chisq = TRUE, plot = FALSE)
 
+
+crosstab(data_sample$PhoneBrd, data_sample$Weatherchecker, expected = TRUE, row.labels = TRUE, chisq = TRUE, plot = FALSE, dnn = c("Phone Brand", "Check Weather frequently"))
 # Single 2 Sample T-Test
 
 # t.test(data_sample$Romance ~ data_sample$Single)
