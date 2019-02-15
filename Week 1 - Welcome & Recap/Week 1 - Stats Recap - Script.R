@@ -61,5 +61,18 @@ t.test(data_sample$Romance ~ data_sample$Single)
 # Mulitple 2 Sample T-Tests
 
 library(survival)
-
 lapply(data_sample[,c("Romance", "Scifi", "smilesaday", "Weatherchecker", "Newsreader")], function(x)t.test(x ~ data_sample$Single, var.equal = TRUE))
+
+# Table of T-Values
+
+# Individual T-Values
+t_Romance <- t.test(data_sample$Romance ~ data_sample$Single)$estimate
+t_Scifi <- t.test(data_sample$Scifi ~ data_sample$Single)$estimate
+t_smiles <- t.test(data_sample$smilesaday ~ data_sample$Single)$estimate
+t_weather <- t.test(data_sample$Weatherchecker ~ data_sample$Single)$estimate
+t_news <- t.test(data_sample$Newsreader ~ data_sample$Single)$estimate
+
+# T-Table
+t_table <- matrix(c(t_Romance, t_Scifi, t_smiles,t_weather,t_news), ncol = 2, byrow=TRUE) 
+colnames(t_table) <- c("Not Single", "Single")
+rownames(t_table) <- c("Romance Pref", "Scifi Pref", "Smiles a Day", "Weather Checks", "News Checks")

@@ -26,7 +26,7 @@ To import the data files provided, you will need to use the commands required fo
 
   To import a native SPSS *'.sav'* file, you must first import a library of functions called haven to properly analyze it. Then you can use the import the data to the variable name of your choice. See below:
   
-```{r eval = FALSE}
+```{r import, eval = TRUE}
 library(haven)
 data_sample <- read_sav("data sample.sav")
 ```
@@ -35,11 +35,45 @@ data_sample <- read_sav("data sample.sav")
 
   Importing a *'.csv'* file doesn't require any additional libraries but may require some extra data manipulation to have the variable and scale labels readable in some of the analyses. 
   
-```{r eval = FALSE}
+```{r eval - FALSE}
 data_sample <- read.csv("data sample.csv")
 ```
 
 
+## Preparing the Data
+
+  No matter which data format you use you will need to reassign the lables that are in the the imported dataset. To do this, we need a new library that will required an installation.
+  
+```{r eval = FALSE}
+  install.packages(expss)
+```
+
+  Then using that library we can apply the appropriate labels. 
+```{r eval = TRUE}
+likert_five = c("Strongly Disagree" = 1, "Disagree" = 2, "Niether Agree nor Disagree" = 3, "Agree" = 4, "Strongly Agree" = 5)
+weekly_hours = c("0" = 1, "1-5" = 2, "6-10" = 3, "11-20" = 4, "21-40" = 5, "41-100" = 6, "more than 100" = 7)
+frequency = c("Never" = 1, "Less than 3 times a week" = 2, "4-10 times a week" = 3, "11-20" = 4, "more than 20 times a week" = 5)
+
+data_sample = apply_labels(data_sample,
+                      Romance = likert_five,
+                      Scifi = likert_five,
+                      commutetime = weekly_hours,
+                      peopleaday = weekly_hours[1:5],
+                      smilesaday = frequency,
+                      renting = c("Rent" = 1, "Own" = 2),
+                      Fitnesspriority = c("Physical Fitness" = 1, "Look Good" = 2),
+                      Weatherchecker = frequency,
+                      Newsreader = frequency,
+                      Cookalot = frequency,
+                      WorkoutFreq = frequency,
+                      HealthyeatFreq = frequency,
+                      Single = c("Not Single" = 1, "Single" = 2),
+                      Romantictime = c("<30 hours a week" = 1, "31-45 hours a week" = 2, "61-80 hours a week" = 4, "more than 81 hours a week" = 5),
+                      Preffirstdate = c("Walk by the river" = 1, "Coffee at a cafe" = 2, "Visit a museum" = 3, "See a movie" = 4)
+)
+
+rm(frequency, likert_five, weekly_hours)
+```
 
 ## Including Plots
 
